@@ -1,0 +1,45 @@
+diff --git a/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.d.ts b/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.d.ts
+index f1889d9..6722dbd 100644
+--- a/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.d.ts
++++ b/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.d.ts
+@@ -1,6 +1,7 @@
++import { Canvas } from '@nativescript/canvas';
+ import { Element } from './Element';
+ export declare class HTMLCanvasElement extends Element {
+-    constructor();
++    constructor(c: Canvas | null);
+     set width(value: any);
+     get width(): any;
+     set height(value: any);
+diff --git a/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.js b/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.js
+index 563b1fe..988eb05 100644
+--- a/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.js
++++ b/node_modules/@nativescript/canvas-polyfill/DOM/HTMLCanvasElement.js
+@@ -1,18 +1,19 @@
+ import { Canvas } from '@nativescript/canvas';
+ import { Element } from './Element';
+ export class HTMLCanvasElement extends Element {
+-    constructor() {
++    constructor(c) {
+         super('canvas');
+         let canvas = undefined;
+-        if (arguments.length > 1) {
+-            canvas = arguments[1];
+-        }
+-        if (canvas instanceof Canvas) {
++        canvas = c;
++        console.log("canvas", canvas)
++        if (canvas instanceof Canvas || canvas instanceof HTMLCanvasElement) {
++            console.log('canvas is instanceof Canvas');
+             this._canvas = canvas;
+         }
+-        else {
+-            this._canvas = Canvas.createCustomView();
+-        }
++         else {
+++            console.log('canvas is not instanceof Canvas');
++             this._canvas = Canvas.createCustomView(true);
++         }
+     }
+     set width(value) {
+         this._canvas.width = value;

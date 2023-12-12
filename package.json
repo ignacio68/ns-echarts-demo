@@ -1,16 +1,20 @@
 {
-  "name": "ns-canvas-demo",
+  "name": "ns-echarts-demo",
   "main": "src/app.ts",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "run:ios": "ns run ios --env.vueDevtools",
+    "run:android": "ns run android --env.vueDevtools",
+    "postinstall": "patch-package"
+  },
   "dependencies": {
-    "@nativescript-community/text": "^1.5.34",
-    "@nativescript-community/ui-canvaslabel": "^1.2.12",
     "@nativescript/canvas": "^1.1.0",
     "@nativescript/canvas-polyfill": "^1.1.0",
     "@nativescript/core": "~8.6.1",
     "echarts": "^5.4.3",
-    "nativescript-vue": "3.0.0-beta.11"
+    "nativescript-vue": "3.0.0-beta.11",
+    "patch-package": "^8.0.0"
   },
   "devDependencies": {
     "@nativescript/android": "8.6.2",

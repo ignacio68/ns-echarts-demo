@@ -1,15 +1,17 @@
 import { createApp, registerElement } from "nativescript-vue";
-// import CanvasPlugin from "@nativescript-community/ui-canvas/vue";
-// import CanvasLabelPlugin from "@nativescript-community/ui-canvaslabel/vue";
 import { Canvas } from "@nativescript/canvas";
-import Home from "./components/Home.vue";
-import Charts from "./views/Charts.vue";
+import Home from "./views/Home.vue";
 
 registerElement("Canvas", () => Canvas);
 
-const app = createApp(Charts);
+const app = createApp(Home);
 
-// app.use(CanvasPlugin);
-// app.use(CanvasLabelPlugin);
+// Global error handler
+app.config.errorHandler = (error, instance, info) => {
+  // Handle the error globally
+  console.error("Global error:", error);
+  console.log("Vue instance:", instance);
+  console.log("Error info:", info);
+};
 
 app.start();
